@@ -1,0 +1,30 @@
+# Gradle build outputs and caches
+.gradle/
+build/
+*/build/
+
+# Compiled class files
+*.class
+
+# Distribution / packaging
+out/
+dist/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Logs
+*.log

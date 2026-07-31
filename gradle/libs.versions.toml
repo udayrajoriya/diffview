@@ -1,0 +1,48 @@
+[versions]
+javafx         = "21.0.4"
+atlantafx      = "2.0.1"
+diffutils      = "4.12"
+jackson        = "2.17.2"
+chardet        = "2.4.0"
+junit5         = "5.10.3"
+assertj        = "3.26.3"
+mockito        = "5.14.0"
+hamcrest       = "2.2"
+testfx         = "4.0.18"
+beryx-runtime  = "2.0.1"    # Apache-2.0 — kept for reference; plugin removed in favour of direct jpackage invocation
+
+[libraries]
+# JavaFX — GPLv2 + Classpath Exception (free for distribution)
+javafx-base     = { module = "org.openjfx:javafx-base",     version.ref = "javafx" }
+javafx-controls = { module = "org.openjfx:javafx-controls", version.ref = "javafx" }
+javafx-fxml     = { module = "org.openjfx:javafx-fxml",     version.ref = "javafx" }
+javafx-graphics = { module = "org.openjfx:javafx-graphics", version.ref = "javafx" }
+
+# UI — MIT
+atlantafx = { module = "io.github.mkpaz:atlantafx-base", version.ref = "atlantafx" }
+
+# Diff engine — Apache-2.0
+diffutils = { module = "io.github.java-diff-utils:java-diff-utils", version.ref = "diffutils" }
+
+# JSON persistence — Apache-2.0
+jackson-databind         = { module = "com.fasterxml.jackson.core:jackson-databind",            version.ref = "jackson" }
+jackson-datatype-jsr310  = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+
+# Encoding detection — MPL-1.1 / GPL-2.0 / LGPL-2.1 tri-license (LGPL variant compatible with distribution)
+chardet = { module = "com.github.albfernandez:juniversalchardet", version.ref = "chardet" }
+
+# Testing (test-scope only — not distributed)
+# JUnit 5 — EPL-2.0 | AssertJ — Apache-2.0 | Mockito — MIT | TestFX — EUPL-1.1
+junit5-api    = { module = "org.junit.jupiter:junit-jupiter-api",    version.ref = "junit5" }
+junit5-engine = { module = "org.junit.jupiter:junit-jupiter-engine",  version.ref = "junit5" }
+junit5-params = { module = "org.junit.jupiter:junit-jupiter-params",  version.ref = "junit5" }
+assertj       = { module = "org.assertj:assertj-core",               version.ref = "assertj" }
+mockito-core  = { module = "org.mockito:mockito-core",               version.ref = "mockito" }
+mockito-junit5= { module = "org.mockito:mockito-junit-jupiter",      version.ref = "mockito" }
+hamcrest      = { module = "org.hamcrest:hamcrest",                  version.ref = "hamcrest" }
+testfx-core   = { module = "org.testfx:testfx-core",                 version.ref = "testfx" }
+testfx-junit5 = { module = "org.testfx:testfx-junit5",               version.ref = "testfx" }
+
+[plugins]
+javafx        = { id = "org.openjfx.javafxplugin", version = "0.1.0"  }
+

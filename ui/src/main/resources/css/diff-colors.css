@@ -1,0 +1,49 @@
+/*
+ * diff-colors.css — diff highlight styles for the Comparison Tool UI.
+ *
+ * The three CSS looked-up color variables below are set dynamically on the
+ * scene root by ThemeManager.applyColors().  The .root block provides
+ * fallback values (matching HighlightColors.defaults()) so the stylesheet is
+ * valid before any runtime override.
+ *
+ * Classes are applied to diff rows and intra-line token spans in task 12.x.
+ */
+
+/* ── Fallback / default highlight palette ─────────────────────────────────── */
+.root {
+    -comp-changed: #ffd070;   /* amber  — HighlightColors.defaults().changed() */
+    -comp-added:   #78e08f;   /* green  — HighlightColors.defaults().added()   */
+    -comp-removed: #e55039;   /* red    — HighlightColors.defaults().removed() */
+}
+
+/* ── Whole-line highlights ────────────────────────────────────────────────── */
+.diff-changed-line {
+    -fx-background-color: -comp-changed;
+}
+
+.diff-added-line {
+    -fx-background-color: -comp-added;
+}
+
+.diff-removed-line {
+    -fx-background-color: -comp-removed;
+}
+
+/* ── Intra-line / token highlights (slightly darker derive) ──────────────── */
+.diff-changed-token {
+    -fx-background-color: derive(-comp-changed, -20%);
+}
+
+.diff-added-token {
+    -fx-background-color: derive(-comp-added, -20%);
+}
+
+.diff-removed-token {
+    -fx-background-color: derive(-comp-removed, -20%);
+}
+
+/* ── Placeholder row (aligned empty row on the opposite side) ────────────── */
+.diff-placeholder-row {
+    -fx-background-color: -fx-background;
+    -fx-opacity: 0.5;
+}
