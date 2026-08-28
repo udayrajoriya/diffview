@@ -1,6 +1,6 @@
 # ComparisonTool
 
-A Beyond Compare-style desktop application for comparing files and folders side-by-side, built with Java 25 and JavaFX 21.
+A Beyond Compare-style desktop application for comparing files and folders side-by-side, built with Java 17 and JavaFX 21.
 
 ---
 
@@ -22,9 +22,9 @@ A Beyond Compare-style desktop application for comparing files and folders side-
 
 | Requirement | Version |
 |---|---|
-| JDK | 25 (e.g. [Microsoft Build of OpenJDK 25](https://learn.microsoft.com/en-us/java/openjdk/download#openjdk-25)) |
+| JDK | 17+ (e.g. [Microsoft Build of OpenJDK 17](https://learn.microsoft.com/en-us/java/openjdk/download#openjdk17)) |
 | OS | Windows 10+, macOS 12+, Ubuntu 20.04+ |
-| Disk | ~500 MB (build outputs land in `C:\BuildTemp\GUIComparisonApp` on Windows by default — see [Build output location](#build-output-location)) |
+| Disk | ~500 MB (build outputs land in each module's own `build/` folder — see [Build output location](#build-output-location)) |
 
 No separate Maven or Gradle installation is needed — the project ships a Gradle wrapper (`gradlew` / `gradlew.bat`).
 
@@ -52,12 +52,12 @@ Module dependency order: `model` ← `infra` ← `core` ← `viewmodel` ← `ui`
 
 ```powershell
 # Windows (PowerShell)
-$env:JAVA_HOME = "C:\Program Files\Microsoft\jdk-25.0.3.9-hotspot"
+$env:JAVA_HOME = "C:\Program Files\Microsoft\jdk-17.0.20.101-hotspot"
 ```
 
 ```bash
 # macOS / Linux
-export JAVA_HOME=/path/to/jdk-25
+export JAVA_HOME=/path/to/jdk-17
 ```
 
 ### 2. Compile and run all tests
@@ -87,41 +87,40 @@ This compiles all modules, runs all JUnit 5 and TestFX tests, and produces the m
 
 ## Build output location
 
-The root `build.gradle.kts` redirects all module build outputs **outside OneDrive** to avoid file-lock issues with the VS Code Java Language Server:
+Standard Gradle layout — every module builds into its own `build/` folder inside the project directory. Nothing is written outside the repo:
 
 ```
-C:\BuildTemp\GUIComparisonApp\
-├── app\          ← app module outputs (JARs, install, jpackage image)
-├── core\
-├── infra\
-├── model\
-├── ui\
-└── viewmodel\
+diffview\
+├── app\build\          ← app module outputs (JARs, install, jpackage image)
+├── core\build\
+├── infra\build\
+├── model\build\
+├── ui\build\
+├── viewmodel\build\
+└── dist\               ← ./gradlew release lands the runnable app here
 ```
 
-Test reports are written to `C:\BuildTemp\GUIComparisonApp\<module>\reports\tests\test\index.html`.
-
-To change the base path, edit the `buildBase` variable at the top of `build.gradle.kts`.
+Test reports are written to `<module>\build\reports\tests\test\index.html`. All `build/` folders and `dist/` are gitignored.
 
 ---
 
 ## Packaging
 
-### Build the self-contained app image
+### Build a runnable release (recommended)
 
 ```powershell
-.\gradlew.bat :app:packageAppImage --no-daemon
+.\gradlew.bat release --no-daemon
 ```
 
-Output: `C:\BuildTemp\GUIComparisonApp\app\jpackage\ComparisonTool\` (Windows)
-
-The image bundles its own JRE — no JDK installation is required on the target machine.
+This is the one command to get a runnable app — it compiles everything, packages a self-contained app image (bundles its own JRE, no JDK needed on the target machine), and copies it to a single, predictable location at the project root:
 
 Platform | Binary location
 ---|---
-Windows | `ComparisonTool\ComparisonTool.exe`
-macOS   | `ComparisonTool.app\Contents\MacOS\ComparisonTool`
-Linux   | `ComparisonTool\bin\ComparisonTool`
+Windows | `dist\ComparisonTool\ComparisonTool.exe`
+macOS   | `dist\ComparisonTool.app\Contents\MacOS\ComparisonTool`
+Linux   | `dist\ComparisonTool\bin\ComparisonTool`
+
+No unit tests run as part of `release` — just compile and package. Re-running `release` overwrites `dist/` with the latest build.
 
 ### Validate the packaged binary (headless smoke test)
 
@@ -129,20 +128,17 @@ Linux   | `ComparisonTool\bin\ComparisonTool`
 .\gradlew.bat :app:validatePackageImage --no-daemon
 ```
 
-This runs the packaged binary with `--smoke-test`, which performs a file and folder comparison entirely in-process (before JavaFX starts) and exits with code 0 on success. Used in CI to confirm the self-contained runtime works.
+This runs the packaged binary with `--smoke-test`, which performs a file and folder comparison entirely in-process (before JavaFX starts) and exits with code 0 on success — useful to confirm the self-contained runtime works before shipping `dist/`.
 
-You can also invoke it directly:
-
-```powershell
-# Windows
-C:\BuildTemp\GUIComparisonApp\app\jpackage\ComparisonTool\ComparisonTool.exe --smoke-test
-```
-
-### Clean the previous app image
+You can also invoke the smoke test directly:
 
 ```powershell
-.\gradlew.bat :app:cleanPackageAppImage --no-daemon
+.\dist\ComparisonTool\ComparisonTool.exe --smoke-test
 ```
+
+### Lower-level tasks
+
+`release` is just `packageAppImage` (produces the app image under `app\build\jpackage\`) plus a copy step into `dist/`. Run `packageAppImage` directly if you want the raw jpackage output without touching `dist/`, or `cleanPackageAppImage` to remove a previous app image before re-packaging.
 
 ---
 
@@ -150,23 +146,23 @@ C:\BuildTemp\GUIComparisonApp\app\jpackage\ComparisonTool\ComparisonTool.exe --s
 
 ### Launching
 
-**From the packaged app image** (after running `packageAppImage`):
+**From the packaged app image** (after running `.\gradlew.bat release`):
 
 ```powershell
 # Windows
-C:\BuildTemp\GUIComparisonApp\app\jpackage\ComparisonTool\ComparisonTool.exe
+.\dist\ComparisonTool\ComparisonTool.exe
 
 # macOS
-open C:\BuildTemp\GUIComparisonApp\app\jpackage\ComparisonTool.app
+open dist/ComparisonTool.app
 
 # Linux
-C:/BuildTemp/GUIComparisonApp/app/jpackage/ComparisonTool/bin/ComparisonTool
+./dist/ComparisonTool/bin/ComparisonTool
 ```
 
 **Directly from source** (no packaging step needed):
 
 ```powershell
-$env:JAVA_HOME = "C:\Program Files\Microsoft\jdk-25.0.3.9-hotspot"
+$env:JAVA_HOME = "C:\Program Files\Microsoft\jdk-17.0.20.101-hotspot"
 .\gradlew.bat :app:run --no-daemon
 ```
 
@@ -301,12 +297,12 @@ Use **Options → Filter Profiles** to create named sets of include/exclude glob
 
 ## CI
 
-The `.github/workflows/ci.yml` workflow runs on every push/PR on **Windows, macOS, and Ubuntu** with Java 25 (Zulu distribution):
+There is no CI workflow configured yet. A typical pipeline would run on **Windows, macOS, and Ubuntu** with Java 17+:
 
 1. `./gradlew build` — compile + all tests
-2. `./gradlew packageAppImage` — produce the self-contained app image
+2. `./gradlew release` — produce the self-contained app image in `dist/`
 3. `./gradlew validatePackageImage` — run the headless smoke test against the packaged binary
-4. Upload test reports and Windows app image as build artifacts
+4. Upload test reports and `dist/` as build artifacts
 
 ---
 
@@ -314,7 +310,7 @@ The `.github/workflows/ci.yml` workflow runs on every push/PR on **Windows, macO
 
 | Component | Library / Tool | Version |
 |---|---|---|
-| Language | Java | 25 |
+| Language | Java | 17 |
 | UI framework | JavaFX | 21.0.4 |
 | UI theme | AtlantaFX | 2.0.1 |
 | Diff engine | java-diff-utils (Myers) | 4.12 |
@@ -329,7 +325,6 @@ The `.github/workflows/ci.yml` workflow runs on every push/PR on **Windows, macO
 
 ## Development tips
 
-- **Avoid running Gradle with `--daemon`** when building on a machine where the workspace is on a synced drive (OneDrive, Dropbox) — use `--no-daemon` to prevent file-lock races.
 - **ViewModels are JavaFX-free in the test sense** — `viewmodel` only uses `javafx.base` (property types), not `javafx.controls` or any `Node` subclass, so ViewModel unit tests run without a display server.
 - **TestFX tests** in the `ui` module use the Monocle headless glass implementation and require no display. The `@ExtendWith` order must be `{MockitoExtension.class, ApplicationExtension.class}` — Mockito first.
 - **Mockito configuration** — the `ui` module uses `ProxyMockMaker` (configured in `ui/src/test/resources/mockito-extensions/org.mockito.plugins.MockMaker`) to avoid Mockito's byte-buddy dependency issues with JPMS.
