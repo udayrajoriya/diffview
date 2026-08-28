@@ -9,7 +9,7 @@ import com.comparetool.infra.concurrent.CancellationToken;
 import com.comparetool.infra.concurrent.DirectTaskExecutor;
 import com.comparetool.infra.concurrent.ProgressReporter;
 import com.comparetool.infra.concurrent.TaskExecutor;
-import com.comparetool.infra.concurrent.VirtualThreadTaskExecutor;
+import com.comparetool.infra.concurrent.PooledTaskExecutor;
 import com.comparetool.infra.encoding.JUniversalChardetDetector;
 import com.comparetool.infra.hash.HashService;
 import com.comparetool.infra.hash.Sha256HashService;
@@ -53,14 +53,14 @@ public final class DefaultComparisonService implements ComparisonService {
 
     /**
      * Production constructor: wires default implementations.
-     * Uses a {@link VirtualThreadTaskExecutor} for background work.
+     * Uses a {@link PooledTaskExecutor} for background work.
      */
     public DefaultComparisonService() {
         this(new LineDiffEngine(),
              new DefaultFolderDiffEngine(),
              new NioFileIOService(new JUniversalChardetDetector()),
              new Sha256HashService(),
-             new VirtualThreadTaskExecutor());
+             new PooledTaskExecutor());
     }
 
     /**
