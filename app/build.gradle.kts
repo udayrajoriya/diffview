@@ -69,6 +69,34 @@ tasks.register<Exec>("packageAppImage") {
 }
 
 // ---------------------------------------------------------------------------
+// release — syncs the app image to <project root>/dist, so there is exactly
+// one place to look for the runnable app instead of hunting through nested
+// build folders.
+//
+// Run: ./gradlew release   →  dist/ComparisonTool/ComparisonTool.exe (Windows)
+// ---------------------------------------------------------------------------
+tasks.register<Sync>("release") {
+    group       = "distribution"
+    description = "Copies the packaged app image to dist/ at the project root (REQ-17.2)."
+    dependsOn("packageAppImage")
+
+    val osName    = System.getProperty("os.name").lowercase()
+    val imageName = if (osName.contains("mac")) "ComparisonTool.app" else "ComparisonTool"
+
+    from(layout.buildDirectory.dir("jpackage/$imageName"))
+    into(rootProject.layout.projectDirectory.dir("dist/$imageName"))
+
+    doLast {
+        val binaryPath = when {
+            osName.contains("win") -> "dist/ComparisonTool/ComparisonTool.exe"
+            osName.contains("mac") -> "dist/ComparisonTool.app"
+            else                   -> "dist/ComparisonTool/bin/ComparisonTool"
+        }
+        logger.lifecycle("Release ready: $binaryPath")
+    }
+}
+
+// ---------------------------------------------------------------------------
 // validatePackageImage — runs the packaged binary in --smoke-test mode to
 // confirm the self-contained image starts and can perform basic comparisons.
 //
