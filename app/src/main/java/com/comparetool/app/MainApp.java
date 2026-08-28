@@ -5,7 +5,7 @@ import com.comparetool.core.folder.DefaultFolderDiffEngine;
 import com.comparetool.core.service.ComparisonService;
 import com.comparetool.core.service.DefaultComparisonService;
 import com.comparetool.infra.concurrent.TaskExecutor;
-import com.comparetool.infra.concurrent.VirtualThreadTaskExecutor;
+import com.comparetool.infra.concurrent.PooledTaskExecutor;
 import com.comparetool.infra.encoding.JUniversalChardetDetector;
 import com.comparetool.infra.hash.Sha256HashService;
 import com.comparetool.infra.io.FileIOService;
@@ -69,7 +69,7 @@ public class MainApp extends Application {
         ThemeManager.applyTheme(ThemeMode.LIGHT);
 
         fileIO     = new NioFileIOService(new JUniversalChardetDetector());
-        executor   = new VirtualThreadTaskExecutor();
+        executor   = new PooledTaskExecutor();
         diffEngine = new LineDiffEngine();
         service    = new DefaultComparisonService(
                 diffEngine,

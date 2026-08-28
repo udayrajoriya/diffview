@@ -119,13 +119,15 @@ class TaskExecutorTest {
             CountDownLatch started = new CountDownLatch(1);
             CountDownLatch observed = new CountDownLatch(1);
 
-            Thread worker = Thread.ofVirtual().start(() -> {
+            Thread worker = new Thread(() -> {
                 started.countDown();
                 while (!token.isCancelled()) {
                     Thread.onSpinWait();
                 }
                 observed.countDown();
             });
+            worker.setDaemon(true);
+            worker.start();
 
             started.await(2, TimeUnit.SECONDS);
             token.cancel();
@@ -250,17 +252,17 @@ class TaskExecutorTest {
     }
 
     // -----------------------------------------------------------------------
-    // VirtualThreadTaskExecutor
+    // PooledTaskExecutor
     // -----------------------------------------------------------------------
 
     @Nested
-    @DisplayName("VirtualThreadTaskExecutor (virtual threads)")
-    class VirtualThreadTaskExecutorTests {
+    @DisplayName("PooledTaskExecutor (cached thread pool)")
+    class PooledTaskExecutorTests {
 
         @Test
         @DisplayName("submit(Callable) eventually returns result")
         void submitCallableReturnsResult() throws Exception {
-            VirtualThreadTaskExecutor executor = new VirtualThreadTaskExecutor();
+            PooledTaskExecutor executor = new PooledTaskExecutor();
             try {
                 Future<Integer> future = executor.submit(() -> 42);
                 assertThat(future.get(5, TimeUnit.SECONDS)).isEqualTo(42);
@@ -272,7 +274,7 @@ class TaskExecutorTest {
         @Test
         @DisplayName("submit(Runnable) eventually completes")
         void submitRunnableCompletes() throws Exception {
-            VirtualThreadTaskExecutor executor = new VirtualThreadTaskExecutor();
+            PooledTaskExecutor executor = new PooledTaskExecutor();
             CountDownLatch latch = new CountDownLatch(1);
             try {
                 executor.submit(latch::countDown);
@@ -285,7 +287,7 @@ class TaskExecutorTest {
         @Test
         @DisplayName("failed Callable wraps exception in Future")
         void failedCallableWrapsException() throws Exception {
-            VirtualThreadTaskExecutor executor = new VirtualThreadTaskExecutor();
+            PooledTaskExecutor executor = new PooledTaskExecutor();
             try {
                 Future<String> future = executor.submit(() -> { throw new IllegalArgumentException("bad"); });
                 assertThatExceptionOfType(ExecutionException.class)
@@ -299,7 +301,7 @@ class TaskExecutorTest {
         @Test
         @DisplayName("cancellation token checked inside virtual-thread task stops work early")
         void cancellationInsideVirtualThread() throws Exception {
-            VirtualThreadTaskExecutor executor = new VirtualThreadTaskExecutor();
+            PooledTaskExecutor executor = new PooledTaskExecutor();
             CancellationToken token = new CancellationToken();
             token.cancel();
 
@@ -329,7 +331,7 @@ class TaskExecutorTest {
         @Test
         @DisplayName("progress callbacks from virtual thread are received in order")
         void progressCallbacksFromVirtualThread() throws Exception {
-            VirtualThreadTaskExecutor executor = new VirtualThreadTaskExecutor();
+            PooledTaskExecutor executor = new PooledTaskExecutor();
             List<Long> received = new CopyOnWriteArrayList<>();
             ProgressReporter reporter = (c, t, m) -> received.add(c);
             CountDownLatch done = new CountDownLatch(1);
