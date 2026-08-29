@@ -5,7 +5,7 @@ subprojects {
     apply(plugin = "java")
 
     group = "com.diffview"
-    version = "1.0.0-SNAPSHOT"
+    version = "0.1.0"
 
     configure<JavaPluginExtension> {
         toolchain {
