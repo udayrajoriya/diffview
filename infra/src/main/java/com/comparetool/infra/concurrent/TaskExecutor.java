@@ -4,12 +4,13 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
 /**
- * Abstraction over a background task executor, enabling production code to use
- * virtual threads while tests inject a synchronous implementation for determinism.
+ * Abstraction over a background task executor, enabling production code to run work
+ * off the JavaFX Application Thread while tests inject a synchronous implementation
+ * for determinism.
  *
  * <p>The two built-in implementations are:
  * <ul>
- *   <li>{@link VirtualThreadTaskExecutor} — production: one virtual thread per task.</li>
+ *   <li>{@link PooledTaskExecutor} — production: cached thread pool, one thread borrowed per task.</li>
  *   <li>{@link DirectTaskExecutor} — tests: runs tasks synchronously in the calling thread.</li>
  * </ul>
  */

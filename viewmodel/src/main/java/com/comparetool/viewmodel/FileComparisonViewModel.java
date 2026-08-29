@@ -34,7 +34,7 @@ import java.util.function.BiConsumer;
  *
  * <h3>Threading</h3>
  * <p>The {@code compare} command submits work to the injected {@link TaskExecutor}.
- * In production, that is a {@code VirtualThreadTaskExecutor}; in tests a
+ * In production, that is a {@code PooledTaskExecutor}; in tests a
  * {@code DirectTaskExecutor} is injected so everything runs synchronously.
  *
  * <h3>JavaFX properties</h3>

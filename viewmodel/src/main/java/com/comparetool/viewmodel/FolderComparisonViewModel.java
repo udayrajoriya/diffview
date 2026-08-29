@@ -48,7 +48,7 @@ import java.util.stream.Collectors;
  *
  * <h3>Threading</h3>
  * <p>The {@code compareFolders} command submits work to the injected {@link TaskExecutor}.
- * In production that is a {@code VirtualThreadTaskExecutor}; tests inject a
+ * In production that is a {@code PooledTaskExecutor}; tests inject a
  * {@code DirectTaskExecutor} for synchronous, deterministic execution.
  *
  * <h3>No JavaFX nodes</h3>
