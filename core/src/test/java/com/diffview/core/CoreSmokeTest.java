@@ -1,4 +1,4 @@
-package com.comparetool.core;
+package com.diffview.core;
 
 import org.junit.jupiter.api.Test;
 

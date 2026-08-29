@@ -1,6 +1,6 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.DiffTreeNode;
+import com.diffview.model.DiffTreeNode;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
@@ -17,7 +17,7 @@ import java.util.function.Predicate;
  * (left or right) of the folder comparison tree (task 13.1 — REQ-007).
  *
  * <p>Both panes in {@link FolderComparisonView} are driven by the same flat
- * {@code visibleNodes} list from {@link com.comparetool.viewmodel.FolderComparisonViewModel},
+ * {@code visibleNodes} list from {@link com.diffview.viewmodel.FolderComparisonViewModel},
  * guaranteeing row-by-row alignment.  The left pane renders left-side file metadata;
  * the right pane renders right-side metadata.  Placeholder rows are rendered when an item
  * exists only on the other side.

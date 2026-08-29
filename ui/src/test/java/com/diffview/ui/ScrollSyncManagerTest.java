@@ -1,6 +1,6 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.DiffRow;
+import com.diffview.model.DiffRow;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -209,12 +209,12 @@ class ScrollSyncManagerTest {
         return FXCollections.observableArrayList(rows);
     }
 
-    private static com.comparetool.model.DiffModel buildDiffModel(int count) {
+    private static com.diffview.model.DiffModel buildDiffModel(int count) {
         List<DiffRow> rows = new ArrayList<>(count);
         for (int i = 1; i <= count; i++) {
             rows.add(DiffRow.unchanged(i, i, "line " + i));
         }
-        return com.comparetool.model.DiffModel.identical(
+        return com.diffview.model.DiffModel.identical(
                 rows,
                 java.nio.charset.StandardCharsets.UTF_8,
                 java.nio.charset.StandardCharsets.UTF_8);

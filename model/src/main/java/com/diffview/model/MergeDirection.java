@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 /**
  * Direction for a merge/copy operation between the two comparison panes.

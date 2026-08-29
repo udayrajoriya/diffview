@@ -1,4 +1,4 @@
-# ComparisonTool
+# DiffView
 
 A desktop application for comparing files and folders side-by-side, built with Java 17 and JavaFX 21.
 
@@ -33,7 +33,7 @@ No separate Maven or Gradle installation is needed — the project ships a Gradl
 ## Project structure
 
 ```
-comparison-tool/
+diffview/
 ├── model/        # Domain records and enums (no JavaFX, no I/O)
 ├── infra/        # File I/O, encoding detection, hashing, persistence, concurrency
 ├── core/         # Diff engines, merge manager, comparison service
@@ -116,9 +116,9 @@ This is the one command to get a runnable app — it compiles everything, packag
 
 Platform | Binary location
 ---|---
-Windows | `dist\ComparisonTool\ComparisonTool.exe`
-macOS   | `dist\ComparisonTool.app\Contents\MacOS\ComparisonTool`
-Linux   | `dist\ComparisonTool\bin\ComparisonTool`
+Windows | `dist\DiffView\DiffView.exe`
+macOS   | `dist\DiffView.app\Contents\MacOS\DiffView`
+Linux   | `dist\DiffView\bin\DiffView`
 
 No unit tests run as part of `release` — just compile and package. Re-running `release` overwrites `dist/` with the latest build.
 
@@ -133,7 +133,7 @@ This runs the packaged binary with `--smoke-test`, which performs a file and fol
 You can also invoke the smoke test directly:
 
 ```powershell
-.\dist\ComparisonTool\ComparisonTool.exe --smoke-test
+.\dist\DiffView\DiffView.exe --smoke-test
 ```
 
 ### Lower-level tasks
@@ -150,13 +150,13 @@ You can also invoke the smoke test directly:
 
 ```powershell
 # Windows
-.\dist\ComparisonTool\ComparisonTool.exe
+.\dist\DiffView\DiffView.exe
 
 # macOS
-open dist/ComparisonTool.app
+open dist/DiffView.app
 
 # Linux
-./dist/ComparisonTool/bin/ComparisonTool
+./dist/DiffView/bin/DiffView
 ```
 
 **Directly from source** (no packaging step needed):

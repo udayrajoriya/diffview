@@ -1,9 +1,9 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.DiffBlock;
-import com.comparetool.model.DiffModel;
-import com.comparetool.model.DiffRow;
-import com.comparetool.model.LineKind;
+import com.diffview.model.DiffBlock;
+import com.diffview.model.DiffModel;
+import com.diffview.model.DiffRow;
+import com.diffview.model.LineKind;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

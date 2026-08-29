@@ -1,4 +1,4 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
 import javafx.beans.binding.Bindings;
 import javafx.event.EventHandler;

@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 /**
  * Line-ending convention used when writing a file or normalizing line comparison.

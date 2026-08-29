@@ -1,4 +1,4 @@
-package com.comparetool.infra.hash;
+package com.diffview.infra.hash;
 
 import java.io.UncheckedIOException;
 import java.nio.file.Path;

@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 import java.nio.file.Path;
 import java.util.Objects;

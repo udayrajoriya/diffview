@@ -1,15 +1,15 @@
-package com.comparetool.core.service;
+package com.diffview.core.service;
 
-import com.comparetool.infra.concurrent.CancellationToken;
-import com.comparetool.infra.concurrent.DirectTaskExecutor;
-import com.comparetool.infra.concurrent.ProgressReporter;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.FileComparisonResult;
-import com.comparetool.model.FileMatchMode;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderComparisonResult;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.infra.concurrent.CancellationToken;
+import com.diffview.infra.concurrent.DirectTaskExecutor;
+import com.diffview.infra.concurrent.ProgressReporter;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.FileComparisonResult;
+import com.diffview.model.FileMatchMode;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonResult;
+import com.diffview.model.FolderItemStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -40,11 +40,11 @@ class ComparisonServiceTest {
     void setUp() {
         // Wire production engines but use a synchronous executor for determinism
         service = new DefaultComparisonService(
-                new com.comparetool.core.diff.LineDiffEngine(),
-                new com.comparetool.core.folder.DefaultFolderDiffEngine(),
-                new com.comparetool.infra.io.NioFileIOService(
-                        new com.comparetool.infra.encoding.JUniversalChardetDetector()),
-                new com.comparetool.infra.hash.Sha256HashService(),
+                new com.diffview.core.diff.LineDiffEngine(),
+                new com.diffview.core.folder.DefaultFolderDiffEngine(),
+                new com.diffview.infra.io.NioFileIOService(
+                        new com.diffview.infra.encoding.JUniversalChardetDetector()),
+                new com.diffview.infra.hash.Sha256HashService(),
                 new DirectTaskExecutor());
     }
 

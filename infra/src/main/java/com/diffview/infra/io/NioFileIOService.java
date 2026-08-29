@@ -1,8 +1,8 @@
-package com.comparetool.infra.io;
+package com.diffview.infra.io;
 
-import com.comparetool.infra.encoding.EncodingDetector;
-import com.comparetool.model.DecodedText;
-import com.comparetool.model.LineEnding;
+import com.diffview.infra.encoding.EncodingDetector;
+import com.diffview.model.DecodedText;
+import com.diffview.model.LineEnding;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

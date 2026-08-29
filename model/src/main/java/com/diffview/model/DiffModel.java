@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 import java.nio.charset.Charset;
 import java.util.List;

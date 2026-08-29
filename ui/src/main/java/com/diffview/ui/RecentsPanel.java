@@ -1,6 +1,6 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.RecentComparison;
+import com.diffview.model.RecentComparison;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;

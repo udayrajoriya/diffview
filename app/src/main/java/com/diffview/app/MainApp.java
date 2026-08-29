@@ -1,25 +1,25 @@
-package com.comparetool.app;
+package com.diffview.app;
 
-import com.comparetool.core.diff.LineDiffEngine;
-import com.comparetool.core.folder.DefaultFolderDiffEngine;
-import com.comparetool.core.service.ComparisonService;
-import com.comparetool.core.service.DefaultComparisonService;
-import com.comparetool.infra.concurrent.TaskExecutor;
-import com.comparetool.infra.concurrent.PooledTaskExecutor;
-import com.comparetool.infra.encoding.JUniversalChardetDetector;
-import com.comparetool.infra.hash.Sha256HashService;
-import com.comparetool.infra.io.FileIOService;
-import com.comparetool.infra.io.NioFileIOService;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.ThemeMode;
-import com.comparetool.ui.FileComparisonView;
-import com.comparetool.ui.FolderComparisonView;
-import com.comparetool.ui.SelectionBar;
-import com.comparetool.ui.ThemeManager;
-import com.comparetool.viewmodel.FileComparisonViewModel;
-import com.comparetool.viewmodel.FileDiffRequest;
-import com.comparetool.viewmodel.FolderComparisonViewModel;
+import com.diffview.core.diff.LineDiffEngine;
+import com.diffview.core.folder.DefaultFolderDiffEngine;
+import com.diffview.core.service.ComparisonService;
+import com.diffview.core.service.DefaultComparisonService;
+import com.diffview.infra.concurrent.TaskExecutor;
+import com.diffview.infra.concurrent.PooledTaskExecutor;
+import com.diffview.infra.encoding.JUniversalChardetDetector;
+import com.diffview.infra.hash.Sha256HashService;
+import com.diffview.infra.io.FileIOService;
+import com.diffview.infra.io.NioFileIOService;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.ThemeMode;
+import com.diffview.ui.FileComparisonView;
+import com.diffview.ui.FolderComparisonView;
+import com.diffview.ui.SelectionBar;
+import com.diffview.ui.ThemeManager;
+import com.diffview.viewmodel.FileComparisonViewModel;
+import com.diffview.viewmodel.FileDiffRequest;
+import com.diffview.viewmodel.FolderComparisonViewModel;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -106,7 +106,7 @@ public class MainApp extends Application {
         URL cssUrl = getClass().getResource("/css/diff-colors.css");
         if (cssUrl != null) scene.getStylesheets().add(cssUrl.toExternalForm());
 
-        primaryStage.setTitle("Comparison Tool");
+        primaryStage.setTitle("DiffView");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -1,8 +1,8 @@
-package com.comparetool.core.diff;
+package com.diffview.core.diff;
 
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.DiffModel;
-import com.comparetool.model.InlineSpan;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.DiffModel;
+import com.diffview.model.InlineSpan;
 
 import java.util.List;
 
@@ -27,9 +27,9 @@ public interface TextDiffEngine {
      *
      * <p>The returned {@link DiffModel} contains:
      * <ul>
-     *   <li>One {@link com.comparetool.model.DiffRow} per visible row (including
+     *   <li>One {@link com.diffview.model.DiffRow} per visible row (including
      *       placeholder rows for alignment).</li>
-     *   <li>One {@link com.comparetool.model.DiffBlock} per contiguous run of
+     *   <li>One {@link com.diffview.model.DiffBlock} per contiguous run of
      *       CHANGED / ADDED / REMOVED rows (UNCHANGED rows are not grouped into blocks).</li>
      * </ul>
      *

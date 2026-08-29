@@ -1,6 +1,6 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.DiffRow;
+import com.diffview.model.DiffRow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;

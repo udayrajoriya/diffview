@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

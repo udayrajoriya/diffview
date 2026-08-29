@@ -1,4 +1,4 @@
-package com.comparetool.infra.concurrent;
+package com.diffview.infra.concurrent;
 
 /**
  * Callback for reporting incremental progress from a background operation.

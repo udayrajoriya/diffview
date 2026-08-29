@@ -1,8 +1,8 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.DiffRow;
-import com.comparetool.model.InlineSpan;
-import com.comparetool.model.LineKind;
+import com.diffview.model.DiffRow;
+import com.diffview.model.InlineSpan;
+import com.diffview.model.LineKind;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;

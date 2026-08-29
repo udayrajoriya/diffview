@@ -1,6 +1,6 @@
-package com.comparetool.infra.persist;
+package com.diffview.infra.persist;
 
-import com.comparetool.model.AppSettings;
+import com.diffview.model.AppSettings;
 
 /**
  * Loads and saves {@link AppSettings} to a JSON file in the OS app-config directory.

@@ -1,12 +1,12 @@
-package com.comparetool.core.folder;
+package com.diffview.core.folder;
 
-import com.comparetool.infra.concurrent.CancellationToken;
-import com.comparetool.infra.concurrent.ProgressReporter;
-import com.comparetool.model.DiffTreeNode;
-import com.comparetool.model.FileMatchMode;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderComparisonResult;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.infra.concurrent.CancellationToken;
+import com.diffview.infra.concurrent.ProgressReporter;
+import com.diffview.model.DiffTreeNode;
+import com.diffview.model.FileMatchMode;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonResult;
+import com.diffview.model.FolderItemStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

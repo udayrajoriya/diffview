@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 import java.util.List;
 import java.util.Objects;

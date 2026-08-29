@@ -1,10 +1,10 @@
-package com.comparetool.core.folder;
+package com.diffview.core.folder;
 
-import com.comparetool.infra.hash.Sha256HashService;
-import com.comparetool.model.FileMatchMode;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.infra.hash.Sha256HashService;
+import com.diffview.model.FileMatchMode;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderItemStatus;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;

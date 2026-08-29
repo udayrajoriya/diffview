@@ -4,7 +4,7 @@
 subprojects {
     apply(plugin = "java")
 
-    group = "com.comparetool"
+    group = "com.diffview"
     version = "1.0.0-SNAPSHOT"
 
     configure<JavaPluginExtension> {

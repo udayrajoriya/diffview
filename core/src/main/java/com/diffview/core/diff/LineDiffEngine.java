@@ -1,11 +1,11 @@
-package com.comparetool.core.diff;
+package com.diffview.core.diff;
 
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.DiffBlock;
-import com.comparetool.model.DiffModel;
-import com.comparetool.model.DiffRow;
-import com.comparetool.model.InlineSpan;
-import com.comparetool.model.LineKind;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.DiffBlock;
+import com.diffview.model.DiffModel;
+import com.diffview.model.DiffRow;
+import com.diffview.model.InlineSpan;
+import com.diffview.model.LineKind;
 
 import com.github.difflib.DiffUtils;
 import com.github.difflib.patch.AbstractDelta;

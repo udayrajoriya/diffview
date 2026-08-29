@@ -1,11 +1,11 @@
-package com.comparetool.core.folder;
+package com.diffview.core.folder;
 
-import com.comparetool.infra.concurrent.CancellationToken;
-import com.comparetool.infra.concurrent.ProgressReporter;
-import com.comparetool.model.DiffTreeNode;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderComparisonResult;
-import com.comparetool.model.ItemError;
+import com.diffview.infra.concurrent.CancellationToken;
+import com.diffview.infra.concurrent.ProgressReporter;
+import com.diffview.model.DiffTreeNode;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonResult;
+import com.diffview.model.ItemError;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -34,7 +34,7 @@ public interface FolderDiffEngine {
      * @throws IllegalArgumentException if either {@code left} or {@code right} is not
      *                                  an existing directory
      * @throws java.io.UncheckedIOException if either tree cannot be read
-     * @throws com.comparetool.infra.concurrent.CancellationException if cancelled
+     * @throws com.diffview.infra.concurrent.CancellationException if cancelled
      */
     FolderComparisonResult compare(Path left, Path right,
                                    FolderComparisonOptions options,

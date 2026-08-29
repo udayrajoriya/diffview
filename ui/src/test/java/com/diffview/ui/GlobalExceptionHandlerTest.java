@@ -1,4 +1,4 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;

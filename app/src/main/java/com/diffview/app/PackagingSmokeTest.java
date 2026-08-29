@@ -1,18 +1,18 @@
-package com.comparetool.app;
+package com.diffview.app;
 
-import com.comparetool.core.diff.LineDiffEngine;
-import com.comparetool.core.folder.DefaultFolderDiffEngine;
-import com.comparetool.core.service.DefaultComparisonService;
-import com.comparetool.infra.concurrent.CancellationToken;
-import com.comparetool.infra.concurrent.DirectTaskExecutor;
-import com.comparetool.infra.concurrent.ProgressReporter;
-import com.comparetool.infra.encoding.JUniversalChardetDetector;
-import com.comparetool.infra.hash.Sha256HashService;
-import com.comparetool.infra.io.NioFileIOService;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.FileComparisonResult;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderComparisonResult;
+import com.diffview.core.diff.LineDiffEngine;
+import com.diffview.core.folder.DefaultFolderDiffEngine;
+import com.diffview.core.service.DefaultComparisonService;
+import com.diffview.infra.concurrent.CancellationToken;
+import com.diffview.infra.concurrent.DirectTaskExecutor;
+import com.diffview.infra.concurrent.ProgressReporter;
+import com.diffview.infra.encoding.JUniversalChardetDetector;
+import com.diffview.infra.hash.Sha256HashService;
+import com.diffview.infra.io.NioFileIOService;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.FileComparisonResult;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonResult;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +39,7 @@ final class PackagingSmokeTest {
         int exitCode = 0;
         Path tmp = null;
         try {
-            tmp = Files.createTempDirectory("comparetool-smoke-");
+            tmp = Files.createTempDirectory("diffview-smoke-");
             runFileComparisonSmoke(tmp);
             runFolderComparisonSmoke(tmp);
             System.out.println("SMOKE TEST PASSED");

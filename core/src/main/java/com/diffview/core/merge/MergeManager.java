@@ -1,7 +1,7 @@
-package com.comparetool.core.merge;
+package com.diffview.core.merge;
 
-import com.comparetool.model.DiffBlock;
-import com.comparetool.model.MergeDirection;
+import com.diffview.model.DiffBlock;
+import com.diffview.model.MergeDirection;
 
 /**
  * Applies directional merge operations on a pair of {@link EditableDocument}s and
@@ -61,6 +61,6 @@ public interface MergeManager {
     /** Returns the editable document for the right side. */
     EditableDocument rightDocument();
 
-    /** Returns the current {@link com.comparetool.model.DiffModel} reflecting the latest merge state. */
-    com.comparetool.model.DiffModel currentDiff();
+    /** Returns the current {@link com.diffview.model.DiffModel} reflecting the latest merge state. */
+    com.diffview.model.DiffModel currentDiff();
 }

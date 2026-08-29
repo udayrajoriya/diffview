@@ -1,4 +1,4 @@
-package com.comparetool.infra;
+package com.diffview.infra;
 
 import org.junit.jupiter.api.Test;
 

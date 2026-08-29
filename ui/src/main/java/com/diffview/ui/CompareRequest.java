@@ -1,4 +1,4 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
 import java.nio.file.Path;
 import java.util.Objects;

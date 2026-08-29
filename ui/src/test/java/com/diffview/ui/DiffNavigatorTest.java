@@ -1,7 +1,7 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.DiffBlock;
-import com.comparetool.model.LineKind;
+import com.diffview.model.DiffBlock;
+import com.diffview.model.LineKind;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

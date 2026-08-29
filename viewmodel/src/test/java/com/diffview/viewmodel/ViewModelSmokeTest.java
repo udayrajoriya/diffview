@@ -1,4 +1,4 @@
-package com.comparetool.viewmodel;
+package com.diffview.viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

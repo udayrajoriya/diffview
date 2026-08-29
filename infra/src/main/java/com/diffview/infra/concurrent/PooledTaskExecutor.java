@@ -1,4 +1,4 @@
-package com.comparetool.infra.concurrent;
+package com.diffview.infra.concurrent;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;

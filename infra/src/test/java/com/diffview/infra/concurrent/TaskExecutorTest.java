@@ -1,4 +1,4 @@
-package com.comparetool.infra.concurrent;
+package com.diffview.infra.concurrent;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;

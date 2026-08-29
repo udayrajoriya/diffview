@@ -1,11 +1,11 @@
-package com.comparetool.core.merge;
+package com.diffview.core.merge;
 
-import com.comparetool.core.diff.TextDiffEngine;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.DiffBlock;
-import com.comparetool.model.DiffModel;
-import com.comparetool.model.DiffRow;
-import com.comparetool.model.MergeDirection;
+import com.diffview.core.diff.TextDiffEngine;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.DiffBlock;
+import com.diffview.model.DiffModel;
+import com.diffview.model.DiffRow;
+import com.diffview.model.MergeDirection;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -75,7 +75,7 @@ public final class DefaultMergeManager implements MergeManager {
         List<DiffRow> allRows = currentDiff.rows();
         List<DiffRow> blockRows = allRows.subList(block.firstRowIndex(), block.lastRowIndex() + 1);
         int firstRowIndex = block.firstRowIndex();
-        com.comparetool.model.LineKind kind = block.kind();
+        com.diffview.model.LineKind kind = block.kind();
 
         performWithHistory(() -> {
             if (direction == MergeDirection.LEFT_TO_RIGHT) {
@@ -198,7 +198,7 @@ public final class DefaultMergeManager implements MergeManager {
      * </ul>
      */
     private void applyLeftToRight(
-            com.comparetool.model.LineKind kind,
+            com.diffview.model.LineKind kind,
             List<DiffRow> blockRows,
             List<DiffRow> allRows,
             int blockFirstRowIndex) {
@@ -245,7 +245,7 @@ public final class DefaultMergeManager implements MergeManager {
      * {@link #applyLeftToRight}).
      */
     private void applyRightToLeft(
-            com.comparetool.model.LineKind kind,
+            com.diffview.model.LineKind kind,
             List<DiffRow> blockRows,
             List<DiffRow> allRows,
             int blockFirstRowIndex) {

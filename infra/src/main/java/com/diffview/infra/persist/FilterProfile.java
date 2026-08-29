@@ -1,4 +1,4 @@
-package com.comparetool.infra.persist;
+package com.diffview.infra.persist;
 
 import java.util.List;
 import java.util.Objects;

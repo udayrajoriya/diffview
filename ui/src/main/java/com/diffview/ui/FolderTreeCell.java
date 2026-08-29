@@ -1,8 +1,8 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.DiffTreeNode;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.model.DiffTreeNode;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderItemStatus;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;

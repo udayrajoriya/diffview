@@ -1,5 +1,5 @@
 /*
- * diff-colors.css — diff highlight styles for the Comparison Tool UI.
+ * diff-colors.css — diff highlight styles for the DiffView UI.
  *
  * The three CSS looked-up color variables below are set dynamically on the
  * scene root by ThemeManager.applyColors().  The .root block provides

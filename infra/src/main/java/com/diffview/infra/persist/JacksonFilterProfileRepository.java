@@ -1,4 +1,4 @@
-package com.comparetool.infra.persist;
+package com.diffview.infra.persist;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

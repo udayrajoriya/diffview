@@ -10,7 +10,7 @@ javafx {
 }
 
 application {
-    mainClass.set("com.comparetool.app.MainApp")
+    mainClass.set("com.diffview.app.MainApp")
 }
 
 // Strip -SNAPSHOT suffix: jpackage requires a numeric-only version (e.g. "1.0.0").
@@ -20,7 +20,7 @@ val releaseVersion: String = project.version.toString().substringBefore("-")
 // packageAppImage — produces a self-contained app image using jpackage
 // directly (no beryx.runtime / jlink pre-pass needed for non-modular apps).
 //
-// Run: ./gradlew packageAppImage   →  build/jpackage/ComparisonTool/
+// Run: ./gradlew packageAppImage   →  build/jpackage/DiffView/
 //
 // For non-modular apps jpackage bundles the required JDK modules automatically
 // via jdeps analysis; JavaFX jars (incl. platform natives) are bundled from
@@ -54,11 +54,11 @@ tasks.register<Exec>("packageAppImage") {
     commandLine(
         jpackageBin,
         "--type",        "app-image",
-        "--name",        "ComparisonTool",
+        "--name",        "DiffView",
         "--app-version", releaseVersion,
         "--input",       installLibDir.absolutePath,
         "--main-jar",    mainJar,
-        "--main-class",  "com.comparetool.app.MainApp",
+        "--main-class",  "com.diffview.app.MainApp",
         "--dest",        outputDir.absolutePath,
         // JavaFX jars in the app/ bundle are proper JPMS module jars.
         // The native jpackage launcher needs them on the module-path
@@ -73,7 +73,7 @@ tasks.register<Exec>("packageAppImage") {
 // one place to look for the runnable app instead of hunting through nested
 // build folders.
 //
-// Run: ./gradlew release   →  dist/ComparisonTool/ComparisonTool.exe (Windows)
+// Run: ./gradlew release   →  dist/DiffView/DiffView.exe (Windows)
 // ---------------------------------------------------------------------------
 tasks.register<Sync>("release") {
     group       = "distribution"
@@ -81,16 +81,16 @@ tasks.register<Sync>("release") {
     dependsOn("packageAppImage")
 
     val osName    = System.getProperty("os.name").lowercase()
-    val imageName = if (osName.contains("mac")) "ComparisonTool.app" else "ComparisonTool"
+    val imageName = if (osName.contains("mac")) "DiffView.app" else "DiffView"
 
     from(layout.buildDirectory.dir("jpackage/$imageName"))
     into(rootProject.layout.projectDirectory.dir("dist/$imageName"))
 
     doLast {
         val binaryPath = when {
-            osName.contains("win") -> "dist/ComparisonTool/ComparisonTool.exe"
-            osName.contains("mac") -> "dist/ComparisonTool.app"
-            else                   -> "dist/ComparisonTool/bin/ComparisonTool"
+            osName.contains("win") -> "dist/DiffView/DiffView.exe"
+            osName.contains("mac") -> "dist/DiffView.app"
+            else                   -> "dist/DiffView/bin/DiffView"
         }
         logger.lifecycle("Release ready: $binaryPath")
     }
@@ -112,11 +112,11 @@ tasks.register<Exec>("validatePackageImage") {
 
     val binaryPath: String = when {
         osName.contains("win") ->
-            File(imageDir, "ComparisonTool/ComparisonTool.exe").absolutePath
+            File(imageDir, "DiffView/DiffView.exe").absolutePath
         osName.contains("mac") ->
-            File(imageDir, "ComparisonTool.app/Contents/MacOS/ComparisonTool").absolutePath
+            File(imageDir, "DiffView.app/Contents/MacOS/DiffView").absolutePath
         else ->
-            File(imageDir, "ComparisonTool/bin/ComparisonTool").absolutePath
+            File(imageDir, "DiffView/bin/DiffView").absolutePath
     }
 
     commandLine(binaryPath, "--smoke-test")

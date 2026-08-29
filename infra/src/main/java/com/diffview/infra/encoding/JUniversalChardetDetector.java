@@ -1,4 +1,4 @@
-package com.comparetool.infra.encoding;
+package com.diffview.infra.encoding;
 
 import org.mozilla.universalchardet.UniversalDetector;
 

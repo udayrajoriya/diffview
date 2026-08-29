@@ -1,9 +1,9 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.infra.persist.FilterProfile;
-import com.comparetool.infra.persist.JacksonFilterProfileRepository;
-import com.comparetool.model.FileMatchMode;
-import com.comparetool.model.FolderComparisonOptions;
+import com.diffview.infra.persist.FilterProfile;
+import com.diffview.infra.persist.JacksonFilterProfileRepository;
+import com.diffview.model.FileMatchMode;
+import com.diffview.model.FolderComparisonOptions;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -1,10 +1,10 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
 import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
-import com.comparetool.model.HighlightColors;
-import com.comparetool.model.ThemeMode;
-import com.comparetool.viewmodel.SettingsViewModel;
+import com.diffview.model.HighlightColors;
+import com.diffview.model.ThemeMode;
+import com.diffview.viewmodel.SettingsViewModel;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;

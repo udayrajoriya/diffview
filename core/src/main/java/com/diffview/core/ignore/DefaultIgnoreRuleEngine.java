@@ -1,6 +1,6 @@
-package com.comparetool.core.ignore;
+package com.diffview.core.ignore;
 
-import com.comparetool.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonOptions;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Path;

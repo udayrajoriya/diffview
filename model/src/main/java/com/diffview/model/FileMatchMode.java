@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 /**
  * Strategy used to decide whether two paired files are considered identical or different

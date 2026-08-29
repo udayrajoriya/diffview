@@ -1,11 +1,11 @@
-package com.comparetool.core.merge;
+package com.diffview.core.merge;
 
-import com.comparetool.core.diff.LineDiffEngine;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.DiffBlock;
-import com.comparetool.model.LineEnding;
-import com.comparetool.model.LineKind;
-import com.comparetool.model.MergeDirection;
+import com.diffview.core.diff.LineDiffEngine;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.DiffBlock;
+import com.diffview.model.LineEnding;
+import com.diffview.model.LineKind;
+import com.diffview.model.MergeDirection;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 

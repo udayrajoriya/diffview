@@ -1,15 +1,15 @@
-package com.comparetool.viewmodel;
+package com.diffview.viewmodel;
 
-import com.comparetool.core.service.ComparisonService;
-import com.comparetool.infra.concurrent.CancellationToken;
-import com.comparetool.infra.concurrent.ProgressReporter;
-import com.comparetool.infra.concurrent.TaskExecutor;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.DiffTreeNode;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderComparisonResult;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.core.service.ComparisonService;
+import com.diffview.infra.concurrent.CancellationToken;
+import com.diffview.infra.concurrent.ProgressReporter;
+import com.diffview.infra.concurrent.TaskExecutor;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.DiffTreeNode;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonResult;
+import com.diffview.model.FolderItemStatus;
 import javafx.beans.property.ReadOnlyBooleanProperty;
 import javafx.beans.property.ReadOnlyIntegerProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -380,7 +380,7 @@ public final class FolderComparisonViewModel {
      * drill-down file comparison view (REQ-9.4).
      *
      * <p>Delegates to the internal {@code refreshSingleNode} logic which reads current
-     * metadata from disk, calls {@link com.comparetool.core.service.ComparisonService#evaluatePair}
+     * metadata from disk, calls {@link com.diffview.core.service.ComparisonService#evaluatePair}
      * and rebuilds the result tree.
      *
      * @param node the node whose status should be refreshed; must not be {@code null}
@@ -406,7 +406,7 @@ public final class FolderComparisonViewModel {
      * Returns {@code true} if the directory at {@code relativePath} is currently
      * collapsed (its children are hidden from the flat visible list).
      *
-     * <p>Used by {@link com.comparetool.ui.FolderTreeCell} to render the correct
+     * <p>Used by {@link com.diffview.ui.FolderTreeCell} to render the correct
      * expand/collapse arrow without needing direct access to the internal set.
      *
      * @param relativePath relative path of the directory to check

@@ -1,6 +1,6 @@
-package com.comparetool.infra.encoding;
+package com.diffview.infra.encoding;
 
-import com.comparetool.model.LineEnding;
+import com.diffview.model.LineEnding;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

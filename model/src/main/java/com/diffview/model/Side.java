@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 /**
  * Identifies which pane of the side-by-side comparison is referenced.

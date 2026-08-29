@@ -1,4 +1,4 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
 import javafx.application.Platform;
 import javafx.geometry.Orientation;

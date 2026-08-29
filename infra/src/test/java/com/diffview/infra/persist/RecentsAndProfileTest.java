@@ -1,7 +1,7 @@
-package com.comparetool.infra.persist;
+package com.diffview.infra.persist;
 
-import com.comparetool.model.AppSettings;
-import com.comparetool.model.RecentComparison;
+import com.diffview.model.AppSettings;
+import com.diffview.model.RecentComparison;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

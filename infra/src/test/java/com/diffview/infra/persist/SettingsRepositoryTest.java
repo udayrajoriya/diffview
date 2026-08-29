@@ -1,12 +1,12 @@
-package com.comparetool.infra.persist;
+package com.diffview.infra.persist;
 
-import com.comparetool.model.AppSettings;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.HighlightColors;
-import com.comparetool.model.RecentComparison;
-import com.comparetool.model.ThemeMode;
-import com.comparetool.model.WindowLayout;
+import com.diffview.model.AppSettings;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.HighlightColors;
+import com.diffview.model.RecentComparison;
+import com.diffview.model.ThemeMode;
+import com.diffview.model.WindowLayout;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

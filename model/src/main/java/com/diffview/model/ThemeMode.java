@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 /**
  * Application UI theme.

@@ -1,4 +1,4 @@
-package com.comparetool.core.ignore;
+package com.diffview.core.ignore;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
-package com.comparetool.infra.io;
+package com.diffview.infra.io;
 
-import com.comparetool.infra.encoding.JUniversalChardetDetector;
-import com.comparetool.model.DecodedText;
-import com.comparetool.model.LineEnding;
+import com.diffview.infra.encoding.JUniversalChardetDetector;
+import com.diffview.model.DecodedText;
+import com.diffview.model.LineEnding;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,15 +1,15 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.core.service.ComparisonService;
-import com.comparetool.infra.concurrent.DirectTaskExecutor;
-import com.comparetool.model.DiffTreeNode;
-import com.comparetool.model.FileMatchMode;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderComparisonResult;
-import com.comparetool.model.FolderItemStatus;
-import com.comparetool.viewmodel.FileDiffRequest;
-import com.comparetool.viewmodel.FolderComparisonViewModel;
+import com.diffview.core.service.ComparisonService;
+import com.diffview.infra.concurrent.DirectTaskExecutor;
+import com.diffview.model.DiffTreeNode;
+import com.diffview.model.FileMatchMode;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonResult;
+import com.diffview.model.FolderItemStatus;
+import com.diffview.viewmodel.FileDiffRequest;
+import com.diffview.viewmodel.FolderComparisonViewModel;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

@@ -1,13 +1,13 @@
-package com.comparetool.core.service;
+package com.diffview.core.service;
 
-import com.comparetool.infra.concurrent.CancellationToken;
-import com.comparetool.infra.concurrent.ProgressReporter;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.FileComparisonResult;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderComparisonResult;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.infra.concurrent.CancellationToken;
+import com.diffview.infra.concurrent.ProgressReporter;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.FileComparisonResult;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonResult;
+import com.diffview.model.FolderItemStatus;
 
 import java.nio.file.Path;
 import java.util.concurrent.Future;
@@ -17,9 +17,9 @@ import java.util.function.BiConsumer;
  * High-level facade that orchestrates the comparison engines.
  *
  * <p>Both {@link #compareFiles} and {@link #compareFolders} submit their work to an
- * injected {@link com.comparetool.infra.concurrent.TaskExecutor}, allowing callers
+ * injected {@link com.diffview.infra.concurrent.TaskExecutor}, allowing callers
  * (e.g. ViewModels) to remain responsive while a comparison runs in the background.
- * Tests inject a {@link com.comparetool.infra.concurrent.DirectTaskExecutor} for
+ * Tests inject a {@link com.diffview.infra.concurrent.DirectTaskExecutor} for
  * synchronous, deterministic execution.
  *
  * <h3>File comparison specifics</h3>
@@ -29,8 +29,8 @@ import java.util.function.BiConsumer;
  *       the {@code largeFileWarning} callback is invoked with both paths
  *       <em>before</em> the diff runs.  The diff is never aborted by the warning.</li>
  *   <li><b>Binary fallback</b> — if either file is detected as binary, a content-equal
- *       check replaces the line diff and an empty {@link com.comparetool.model.DiffModel}
- *       is returned ({@link com.comparetool.model.DiffModel#identical()} reflects
+ *       check replaces the line diff and an empty {@link com.diffview.model.DiffModel}
+ *       is returned ({@link com.diffview.model.DiffModel#identical()} reflects
  *       whether the files are byte-equal).</li>
  * </ul>
  */

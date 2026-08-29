@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 /**
  * A contiguous run of characters within a single diff line that is highlighted

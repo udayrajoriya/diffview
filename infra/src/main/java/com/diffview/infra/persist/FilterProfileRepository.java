@@ -1,4 +1,4 @@
-package com.comparetool.infra.persist;
+package com.diffview.infra.persist;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

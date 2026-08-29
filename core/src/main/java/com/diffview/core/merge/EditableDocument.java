@@ -1,7 +1,7 @@
-package com.comparetool.core.merge;
+package com.diffview.core.merge;
 
-import com.comparetool.model.DecodedText;
-import com.comparetool.model.LineEnding;
+import com.diffview.model.DecodedText;
+import com.diffview.model.LineEnding;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package com.comparetool.infra.persist;
+package com.diffview.infra.persist;
 
-import com.comparetool.model.AppSettings;
+import com.diffview.model.AppSettings;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -26,10 +26,10 @@ import java.util.Objects;
  *
  * <h3>File location</h3>
  * <ul>
- *   <li><b>Windows</b>: {@code %APPDATA%\CompareTool\settings.json}</li>
- *   <li><b>macOS</b>:   {@code ~/Library/Application Support/CompareTool/settings.json}</li>
- *   <li><b>Linux</b>:   {@code $XDG_CONFIG_HOME/CompareTool/settings.json} (falls back to
- *                        {@code ~/.config/CompareTool/settings.json})</li>
+ *   <li><b>Windows</b>: {@code %APPDATA%\DiffView\settings.json}</li>
+ *   <li><b>macOS</b>:   {@code ~/Library/Application Support/DiffView/settings.json}</li>
+ *   <li><b>Linux</b>:   {@code $XDG_CONFIG_HOME/DiffView/settings.json} (falls back to
+ *                        {@code ~/.config/DiffView/settings.json})</li>
  * </ul>
  *
  * <h3>Defensive parsing</h3>
@@ -113,16 +113,16 @@ public final class JacksonSettingsRepository implements SettingsRepository {
             String base    = (appData != null && !appData.isBlank())
                     ? appData
                     : System.getProperty("user.home", ".");
-            return Path.of(base, "CompareTool");
+            return Path.of(base, "DiffView");
         } else if (os.contains("mac")) {
             return Path.of(System.getProperty("user.home", "."),
-                    "Library", "Application Support", "CompareTool");
+                    "Library", "Application Support", "DiffView");
         } else {
             // Linux / other UNIX — respect XDG_CONFIG_HOME
             String xdg = System.getenv("XDG_CONFIG_HOME");
             return (xdg != null && !xdg.isBlank())
-                    ? Path.of(xdg, "CompareTool")
-                    : Path.of(System.getProperty("user.home", "."), ".config", "CompareTool");
+                    ? Path.of(xdg, "DiffView")
+                    : Path.of(System.getProperty("user.home", "."), ".config", "DiffView");
         }
     }
 
@@ -140,7 +140,7 @@ public final class JacksonSettingsRepository implements SettingsRepository {
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
         // Custom: Path and Charset
-        SimpleModule custom = new SimpleModule("CompareTool");
+        SimpleModule custom = new SimpleModule("DiffView");
 
         custom.addSerializer(Path.class, new StdSerializer<>(Path.class) {
             @Override

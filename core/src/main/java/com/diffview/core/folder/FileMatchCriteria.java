@@ -1,10 +1,10 @@
-package com.comparetool.core.folder;
+package com.diffview.core.folder;
 
-import com.comparetool.infra.hash.HashService;
-import com.comparetool.model.FileMatchMode;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.infra.hash.HashService;
+import com.diffview.model.FileMatchMode;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderItemStatus;
 
 import java.util.Objects;
 
@@ -12,7 +12,7 @@ import java.util.Objects;
  * Pluggable strategy that decides whether two paired (both-sides-present) files are
  * {@link FolderItemStatus#IDENTICAL} or {@link FolderItemStatus#DIFFERENT}.
  *
- * <p>The strategy is selected by {@link com.comparetool.model.FileMatchMode} and is
+ * <p>The strategy is selected by {@link com.diffview.model.FileMatchMode} and is
  * applied only to file nodes — directory nodes derive their status through roll-up.
  */
 public interface FileMatchCriteria {

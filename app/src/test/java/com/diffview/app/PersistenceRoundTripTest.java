@@ -1,12 +1,12 @@
-package com.comparetool.app;
+package com.diffview.app;
 
-import com.comparetool.infra.persist.DefaultRecentsManager;
-import com.comparetool.infra.persist.FilterProfile;
-import com.comparetool.infra.persist.JacksonFilterProfileRepository;
-import com.comparetool.infra.persist.JacksonSettingsRepository;
-import com.comparetool.model.AppSettings;
-import com.comparetool.model.RecentComparison;
-import com.comparetool.model.ThemeMode;
+import com.diffview.infra.persist.DefaultRecentsManager;
+import com.diffview.infra.persist.FilterProfile;
+import com.diffview.infra.persist.JacksonFilterProfileRepository;
+import com.diffview.infra.persist.JacksonSettingsRepository;
+import com.diffview.model.AppSettings;
+import com.diffview.model.RecentComparison;
+import com.diffview.model.ThemeMode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 

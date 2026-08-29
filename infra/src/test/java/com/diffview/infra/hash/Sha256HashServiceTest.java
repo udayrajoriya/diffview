@@ -1,4 +1,4 @@
-package com.comparetool.infra.hash;
+package com.diffview.infra.hash;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;

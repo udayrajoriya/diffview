@@ -1,4 +1,4 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;

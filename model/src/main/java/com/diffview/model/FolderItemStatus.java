@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 /**
  * Classification of a single item (file or directory) in a folder comparison.

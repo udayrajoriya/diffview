@@ -1,17 +1,17 @@
-package com.comparetool.infra.persist;
+package com.diffview.infra.persist;
 
-import com.comparetool.model.RecentComparison;
+import com.diffview.model.RecentComparison;
 
 import java.nio.file.Path;
 import java.util.List;
 
 /**
- * Manages the recently-opened comparisons list stored inside {@link com.comparetool.model.AppSettings}.
+ * Manages the recently-opened comparisons list stored inside {@link com.diffview.model.AppSettings}.
  *
  * <h3>Deduplication</h3>
  * <p>When a comparison is added that has the same left+right paths as an existing entry, the old
  * entry is removed and the new one is prepended (most-recent-first).  The list is trimmed to
- * {@link com.comparetool.model.AppSettings#MAX_RECENTS} entries.
+ * {@link com.diffview.model.AppSettings#MAX_RECENTS} entries.
  *
  * <h3>Availability</h3>
  * <p>{@link #isAvailable(RecentComparison)} checks whether both paths still exist on disk.
@@ -22,7 +22,7 @@ public interface RecentsManager {
 
     /**
      * Prepends {@code recent} to the persisted recents list, deduplicating by left+right paths
-     * and trimming to {@link com.comparetool.model.AppSettings#MAX_RECENTS}.
+     * and trimming to {@link com.diffview.model.AppSettings#MAX_RECENTS}.
      *
      * @param recent the comparison to record; must not be {@code null}
      */

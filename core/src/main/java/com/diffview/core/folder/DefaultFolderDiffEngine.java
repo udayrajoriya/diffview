@@ -1,18 +1,18 @@
-package com.comparetool.core.folder;
+package com.diffview.core.folder;
 
-import com.comparetool.core.ignore.DefaultIgnoreRuleEngine;
-import com.comparetool.core.ignore.IgnoreRuleEngine;
-import com.comparetool.infra.concurrent.CancellationToken;
-import com.comparetool.infra.concurrent.ProgressReporter;
-import com.comparetool.infra.hash.HashService;
-import com.comparetool.infra.hash.Sha256HashService;
-import com.comparetool.model.DiffTreeNode;
-import com.comparetool.model.ErrorCode;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderComparisonResult;
-import com.comparetool.model.FolderItemStatus;
-import com.comparetool.model.ItemError;
+import com.diffview.core.ignore.DefaultIgnoreRuleEngine;
+import com.diffview.core.ignore.IgnoreRuleEngine;
+import com.diffview.infra.concurrent.CancellationToken;
+import com.diffview.infra.concurrent.ProgressReporter;
+import com.diffview.infra.hash.HashService;
+import com.diffview.infra.hash.Sha256HashService;
+import com.diffview.model.DiffTreeNode;
+import com.diffview.model.ErrorCode;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderComparisonResult;
+import com.diffview.model.FolderItemStatus;
+import com.diffview.model.ItemError;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
@@ -72,7 +72,7 @@ public class DefaultFolderDiffEngine implements FolderDiffEngine {
      * Creates an engine that delegates content-hash comparisons to {@code hashService}.
      *
      * @param hashService the hash service to use when the match mode is
-     *                    {@link com.comparetool.model.FileMatchMode#CONTENT}
+     *                    {@link com.diffview.model.FileMatchMode#CONTENT}
      */
     public DefaultFolderDiffEngine(HashService hashService) {
         this.hashService = Objects.requireNonNull(hashService, "hashService must not be null");

@@ -1,7 +1,7 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.HighlightColors;
-import com.comparetool.model.ThemeMode;
+import com.diffview.model.HighlightColors;
+import com.diffview.model.ThemeMode;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;

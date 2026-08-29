@@ -1,6 +1,6 @@
-package com.comparetool.viewmodel;
+package com.diffview.viewmodel;
 
-import com.comparetool.model.ComparisonOptions;
+import com.diffview.model.ComparisonOptions;
 
 import java.nio.file.Path;
 import java.util.Objects;

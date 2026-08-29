@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -42,7 +42,7 @@ public record FolderComparisonResult(
 
     /**
      * Backwards-compatible 6-param constructor — equivalent to passing an empty errors list.
-     * Used by {@link com.comparetool.core.folder.FolderDiffEngine#summarize(DiffTreeNode)} and
+     * Used by {@link com.diffview.core.folder.FolderDiffEngine#summarize(DiffTreeNode)} and
      * any existing callers that predate the {@code errors} field.
      */
     public FolderComparisonResult(DiffTreeNode root,

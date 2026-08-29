@@ -1,12 +1,12 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.infra.concurrent.CancellationToken;
-import com.comparetool.infra.concurrent.ProgressReporter;
-import com.comparetool.model.DiffTreeNode;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderItemStatus;
-import com.comparetool.viewmodel.FileDiffRequest;
-import com.comparetool.viewmodel.FolderComparisonViewModel;
+import com.diffview.infra.concurrent.CancellationToken;
+import com.diffview.infra.concurrent.ProgressReporter;
+import com.diffview.model.DiffTreeNode;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderItemStatus;
+import com.diffview.viewmodel.FileDiffRequest;
+import com.diffview.viewmodel.FolderComparisonViewModel;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;

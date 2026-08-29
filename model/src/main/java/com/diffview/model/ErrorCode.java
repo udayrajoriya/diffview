@@ -1,4 +1,4 @@
-package com.comparetool.model;
+package com.diffview.model;
 
 /**
  * Categorised error codes for {@link OperationResult} and {@link ItemError} (REQ-016.1, REQ-016.2).

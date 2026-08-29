@@ -1,8 +1,8 @@
-package com.comparetool.core.folder;
+package com.diffview.core.folder;
 
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderItemStatus;
 
 /**
  * {@link FileMatchCriteria} implementation that considers two files equal when

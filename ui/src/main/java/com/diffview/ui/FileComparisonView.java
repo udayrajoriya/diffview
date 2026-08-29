@@ -1,9 +1,9 @@
-package com.comparetool.ui;
+package com.diffview.ui;
 
-import com.comparetool.model.DiffBlock;
-import com.comparetool.model.DiffModel;
-import com.comparetool.model.MergeDirection;
-import com.comparetool.viewmodel.FileComparisonViewModel;
+import com.diffview.model.DiffBlock;
+import com.diffview.model.DiffModel;
+import com.diffview.model.MergeDirection;
+import com.diffview.viewmodel.FileComparisonViewModel;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -46,7 +46,7 @@ import java.util.Optional;
  *   <li>Create the view and add it to the scene.</li>
  *   <li>Call {@link #setModel(DiffModel)} to display a comparison result.</li>
  *   <li>The left and right {@link DiffPane}s are populated with the same
- *       {@link com.comparetool.model.DiffRow} list; each cell renders its own
+ *       {@link com.diffview.model.DiffRow} list; each cell renders its own
  *       side (left or right).</li>
  *   <li>When {@link DiffModel#identical()} is {@code true}, an overlay label
  *       is shown in the center of the view.</li>

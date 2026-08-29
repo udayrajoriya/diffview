@@ -1,10 +1,10 @@
-package com.comparetool.core.folder;
+package com.diffview.core.folder;
 
-import com.comparetool.infra.hash.HashService;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.FileMeta;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.FolderItemStatus;
+import com.diffview.infra.hash.HashService;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.FileMeta;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.FolderItemStatus;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;

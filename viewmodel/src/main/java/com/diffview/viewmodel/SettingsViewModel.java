@@ -1,11 +1,11 @@
-package com.comparetool.viewmodel;
+package com.diffview.viewmodel;
 
-import com.comparetool.infra.persist.SettingsRepository;
-import com.comparetool.model.AppSettings;
-import com.comparetool.model.ComparisonOptions;
-import com.comparetool.model.FolderComparisonOptions;
-import com.comparetool.model.HighlightColors;
-import com.comparetool.model.ThemeMode;
+import com.diffview.infra.persist.SettingsRepository;
+import com.diffview.model.AppSettings;
+import com.diffview.model.ComparisonOptions;
+import com.diffview.model.FolderComparisonOptions;
+import com.diffview.model.HighlightColors;
+import com.diffview.model.ThemeMode;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
