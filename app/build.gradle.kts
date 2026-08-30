@@ -13,6 +13,18 @@ application {
     mainClass.set("com.diffview.app.MainApp")
 }
 
+// Implementation-Version in the manifest lets MainApp read the running version at
+// runtime (Package.getImplementationVersion()) for the About dialog. Only populated
+// when running from the built jar (installDist/jpackage) — null under :app:run.
+tasks.named<Jar>("jar") {
+    manifest {
+        attributes(
+            "Implementation-Title"   to "DiffView",
+            "Implementation-Version" to project.version
+        )
+    }
+}
+
 // Strip -SNAPSHOT suffix: jpackage requires a numeric-only version (e.g. "1.0.0").
 val releaseVersion: String = project.version.toString().substringBefore("-")
 

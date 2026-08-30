@@ -13,6 +13,8 @@ import com.diffview.infra.io.NioFileIOService;
 import com.diffview.model.ComparisonOptions;
 import com.diffview.model.FolderComparisonOptions;
 import com.diffview.model.ThemeMode;
+import com.diffview.ui.AboutDialog;
+import com.diffview.ui.ComparisonLauncher;
 import com.diffview.ui.FileComparisonView;
 import com.diffview.ui.FolderComparisonView;
 import com.diffview.ui.SelectionBar;
@@ -21,15 +23,17 @@ import com.diffview.viewmodel.FileComparisonViewModel;
 import com.diffview.viewmodel.FileDiffRequest;
 import com.diffview.viewmodel.FolderComparisonViewModel;
 import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -39,22 +43,23 @@ import java.net.URL;
  *
  * <pre>
  * ┌──────────────────────────────────────────────────────────┐
- * │  [+ File Comparison]  [+ Folder Comparison]  (toolbar)  │
+ * │  File   Help                                    (menu bar) │
  * ├──────────────────────────────────────────────────────────┤
  * │  TabPane                                                 │
  * │  ┌─────────────┐ ┌─────────────┐                        │
- * │  │ File Comp ✕ │ │ Folder  ✕   │  …                     │
+ * │  │ New Comp  ✕ │ │ [File] a↔b✕ │  …                     │
  * │  └─────────────┘ └─────────────┘                        │
  * │  ┌────────────────────────────────────────────────────┐  │
- * │  │  SelectionBar (left path | right path | Compare)   │  │
- * │  ├────────────────────────────────────────────────────┤  │
- * │  │  comparison content (empty until Compare is run)   │  │
+ * │  │  ComparisonLauncher (cards) — until a mode is picked │  │
+ * │  │  … replaced by SelectionBar + comparison content …  │  │
  * │  └────────────────────────────────────────────────────┘  │
  * └──────────────────────────────────────────────────────────┘
  * </pre>
  *
- * Each tab owns its own ViewModels and Views so comparisons are fully independent.
- * Double-clicking a file inside a Folder Comparison opens a new File Comparison tab.
+ * Each tab opens on a {@link ComparisonLauncher} (pick File or Folder comparison);
+ * picking a card swaps the tab's content for the real comparison view. Each tab owns
+ * its own ViewModels and Views so comparisons are fully independent. Double-clicking a
+ * file inside a Folder Comparison opens a new File Comparison tab directly.
  */
 public class MainApp extends Application {
 
@@ -64,8 +69,11 @@ public class MainApp extends Application {
     private ComparisonService service;
     private TaskExecutor      executor;
 
+    private Stage stage;
+
     @Override
     public void start(Stage primaryStage) {
+        this.stage = primaryStage;
         ThemeManager.applyTheme(ThemeMode.LIGHT);
 
         fileIO     = new NioFileIOService(new JUniversalChardetDetector());
@@ -81,46 +89,87 @@ public class MainApp extends Application {
         // ── Tab pane ───────────────────────────────────────────────────────────
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.ALL_TABS);
+        tabPane.getStyleClass().add("floating"); // AtlantaFX Styles.TABS_FLOATING
 
-        // ── Toolbar ────────────────────────────────────────────────────────────
-        Button newFileBtn   = new Button("+ File Comparison");
-        Button newFolderBtn = new Button("+ Folder Comparison");
-        newFileBtn  .setId("newFileTabButton");
-        newFolderBtn.setId("newFolderTabButton");
-        newFileBtn  .setOnAction(e -> addTab(tabPane, false));
-        newFolderBtn.setOnAction(e -> addTab(tabPane, true));
-
-        HBox toolbar = new HBox(8, newFileBtn, newFolderBtn);
-        toolbar.setPadding(new Insets(6, 8, 4, 8));
-        toolbar.setAlignment(Pos.CENTER_LEFT);
+        // ── Menu bar ───────────────────────────────────────────────────────────
+        MenuBar menuBar = buildMenuBar(tabPane);
 
         BorderPane root = new BorderPane();
-        root.setTop(toolbar);
+        root.setTop(menuBar);
         root.setCenter(tabPane);
 
-        // Open one default file-comparison tab on startup
-        addTab(tabPane, false);
+        // Open one default launcher tab on startup
+        addTab(tabPane);
 
         Scene scene = new Scene(root, 1200, 800);
-        // diff-colors.css lives in the ui module classpath
-        URL cssUrl = getClass().getResource("/css/diff-colors.css");
-        if (cssUrl != null) scene.getStylesheets().add(cssUrl.toExternalForm());
+        // css lives in the ui module classpath
+        addStylesheet(scene, "/css/diff-colors.css");
+        addStylesheet(scene, "/css/app.css");
 
         primaryStage.setTitle("DiffView");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    private static void addStylesheet(Scene scene, String path) {
+        URL cssUrl = MainApp.class.getResource(path);
+        if (cssUrl != null) scene.getStylesheets().add(cssUrl.toExternalForm());
+    }
+
+    // ── Menu bar ───────────────────────────────────────────────────────────────
+
+    private MenuBar buildMenuBar(TabPane tabPane) {
+        MenuItem newComparison = new MenuItem("New Comparison");
+        newComparison.setAccelerator(KeyCombination.keyCombination("Shortcut+N"));
+        newComparison.setOnAction(e -> addTab(tabPane));
+
+        MenuItem exit = new MenuItem("Exit");
+        exit.setOnAction(e -> Platform.exit());
+
+        Menu fileMenu = new Menu("File", null,
+                newComparison, new SeparatorMenuItem(), exit);
+
+        MenuItem about = new MenuItem("About DiffView");
+        about.setOnAction(e -> AboutDialog.show(stage, appVersion()));
+
+        Menu helpMenu = new Menu("Help", null, about);
+
+        return new MenuBar(fileMenu, helpMenu);
+    }
+
+    private static String appVersion() {
+        String v = MainApp.class.getPackage().getImplementationVersion();
+        return v != null ? v : "dev";
+    }
+
     // ── Tab factory ────────────────────────────────────────────────────────────
 
     /**
-     * Creates a new comparison tab, adds it to {@code tabPane}, and selects it.
+     * Opens a new tab showing the {@link ComparisonLauncher} cards, adds it to
+     * {@code tabPane}, and selects it. Picking a card swaps the tab's content for
+     * the real File or Folder comparison view.
+     */
+    private void addTab(TabPane tabPane) {
+        Tab tab = new Tab("New Comparison");
+
+        ComparisonLauncher launcher = new ComparisonLauncher();
+        launcher.setOnCompareFiles(()   -> tab.setContent(buildComparisonContent(tab, tabPane, false)));
+        launcher.setOnCompareFolders(() -> tab.setContent(buildComparisonContent(tab, tabPane, true)));
+        tab.setContent(launcher);
+
+        tabPane.getTabs().add(tab);
+        tabPane.getSelectionModel().select(tab);
+    }
+
+    /**
+     * Builds the SelectionBar-driven comparison content for {@code tab} once the
+     * user has picked a mode from the {@link ComparisonLauncher}.
      * Each tab has its own ViewModels and Views — comparisons are independent.
      *
-     * @param folder {@code true} for a Folder Comparison tab, {@code false} for File
+     * @param folder {@code true} for a Folder Comparison, {@code false} for File
      */
-    private void addTab(TabPane tabPane, boolean folder) {
-        Tab tab = new Tab(folder ? "Folder Comparison" : "File Comparison");
+    private BorderPane buildComparisonContent(Tab tab, TabPane tabPane, boolean folder) {
+        tab.setText(folder ? "Folder Comparison" : "File Comparison");
 
         // Per-tab ViewModels
         FileComparisonViewModel   fileVm   = new FileComparisonViewModel(service, diffEngine, executor, fileIO);
@@ -170,10 +219,7 @@ public class MainApp extends Application {
         BorderPane tabRoot = new BorderPane();
         tabRoot.setTop(selBar);
         tabRoot.setCenter(contentArea);
-        tab.setContent(tabRoot);
-
-        tabPane.getTabs().add(tab);
-        tabPane.getSelectionModel().select(tab);
+        return tabRoot;
     }
 
     /**
